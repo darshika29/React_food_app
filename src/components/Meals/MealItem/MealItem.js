@@ -4,7 +4,11 @@ import classes from "./mealItem.module.css";
 
 
 const MealItem=(props)=>{
-    const price= `$ ${props.price.toFixed(2)}`;
+    const price = `$ ${props.price.toFixed(2)}`;
+    
+    const AddItemHandler = () => {
+        
+    }
      return(
         <Fragment>
             <li className={classes.meal}>
@@ -18,7 +22,7 @@ const MealItem=(props)=>{
                     {price}
                 </div>
                 <div>
-                    <MealForm/>
+                     <MealForm onaddItem={ AddItemHandler} />
 
 
                 </div>
