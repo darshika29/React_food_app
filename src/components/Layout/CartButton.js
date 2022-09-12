@@ -1,10 +1,18 @@
 import React from "react";
 import classes from "./cartButton.module.css"
 
+import { useContext } from "react";
+import cartContext from "../../store/cartContext";
 
-const CartButton=(props)=>{
+
+const CartButton = (props) => {
+    const cartCtx = useContext(cartContext)
+        // console.log(cartCtx);
+    const numberOfItem = cartCtx.items.reduce((curNumber, item) => {
+        return curNumber + item.amount;
+    },0)
     return(
-        <button className={classes.button}>
+        <button className={classes.button} onClick={props.onClick}>
             <span className={classes.icon}>
             <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -19,7 +27,7 @@ const CartButton=(props)=>{
                 Your Cart
             </span>
             <span className={classes.badge}>
-                3
+                {numberOfItem}
             </span>
         </button>
     )

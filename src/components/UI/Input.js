@@ -1,6 +1,9 @@
+import React from "react";
 import classes from "./input.module.css";
 
-const Input=(props)=>{
+
+
+const Input=React.forwardRef((props,ref)=>{
     return(
         <div className={classes.input}>
             <label htmlFor={props.input.id}>{props.label}</label>
@@ -9,6 +12,6 @@ const Input=(props)=>{
         </div>
     )
 
-};
+})
 
 export default Input;

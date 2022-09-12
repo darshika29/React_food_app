@@ -4,13 +4,15 @@ import classes from "./header.module.css"
 import CartButton from "./CartButton"
 
 
-const Header=(props)=>{
+
+const Header = (props) => { 
+    
     return(
         <Fragment>
             <header className={classes.header}>
                 <h1>DarshikaMeals</h1>
                 <span className={classes.cart}>
-                <CartButton/>
+                    <CartButton onClick={ props.onClick} />
                 </span>
             </header>
            
