@@ -18,7 +18,7 @@ const MealForm = (props) => {
             setItemStatus(false)
             return;
         }
-        props.onaddItem()
+        props.onaddItem(enteredAmountNumber);
 
         
     }

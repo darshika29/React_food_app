@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./cartButton.module.css"
 
 import { useContext } from "react";
@@ -6,13 +6,28 @@ import cartContext from "../../store/cartContext";
 
 
 const CartButton = (props) => {
+    const [btnToggle, setBtnToggle] = useState(false);
     const cartCtx = useContext(cartContext)
         // console.log(cartCtx);
-    const numberOfItem = cartCtx.items.reduce((curNumber, item) => {
+    const { items } = cartCtx;
+    const numberOfItem = items.reduce((curNumber, item) => {
         return curNumber + item.amount;
-    },0)
+    }, 0)
+    
+    const btnClass = `${classes.button} ${btnToggle ? classes.bump : ''}`
+    useEffect(() => {
+        if (items.length===0) {
+            return;
+        }
+        setBtnToggle(true);
+        const timer=setTimeout(() => { setBtnToggle(false); }, 300);
+        return () => {
+            clearTimeout(timer);  
+        };
+        
+    }, [items]);
     return(
-        <button className={classes.button} onClick={props.onClick}>
+        <button className={btnClass} onClick={props.onClick}>
             <span className={classes.icon}>
             <svg
       xmlns='http://www.w3.org/2000/svg'
